@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 
 @Configuration
@@ -32,6 +33,12 @@ public class DynamoDBConfig {
     public AWSCredentials amazonAWSCredentials() {
         return new BasicAWSCredentials(environment.getProperty(AWS_ACCESS_KEY_ID),
                 environment.getProperty(AWS_SECRET_KEY));
+    }
+
+    @Bean
+    @Primary
+    public DynamoDBMapperConfig dynamoDBMapperConfig() {
+        return DynamoDBMapperConfig.DEFAULT;
     }
 
     @Bean
