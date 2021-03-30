@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  
 @RestController
 public class CustomerController {
+
 	@Autowired
-	CustomerRepository repository;
+	private CustomerRepository repository;
 	
 	@GetMapping("/bulkcreate")
 	public String bulkcreate(){
@@ -35,7 +36,6 @@ public class CustomerController {
 
 	@PostMapping("/create")
 	public String create(@RequestBody CustomerUI customer){
-		// save a single Customer
 		repository.save(new Customer(customer.getFirstName(), customer.getLastName()));
 
 		return "Customer is created";
